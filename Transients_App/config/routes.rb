@@ -2,11 +2,14 @@ Rails.application.routes.draw do
   
     root 'welcome#index'
     
-    resources :users
     resources :tracks
+    resources :users, only: [:new, :create]
     
-#  resources :houses
-#  resources :users, only: [:new, :create]
+    resources :sessions, only: [:new, :create, :destroy]
+    # Create a better looking URL for logging in
+    get '/login', to: 'sessions#new'
+    get '/logout', to: 'welcome#index'
+    
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

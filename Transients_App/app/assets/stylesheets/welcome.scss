@@ -1,3 +1,31 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#welcome-header {
+    text-align: center;
+    color: #777;
+    font-size: 48px;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0.5%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#welcome-slogan {
+    font-size: 24px;
+    font-family: 'Lobster Two', cursive;
+}
+
+#main-logo-container {
+    display: flex;
+    justify-content: center;
+}
+
+#main-logo {
+    margin: auto;
+}
+
+#myCarousel {
+    margin: 0;
+}
