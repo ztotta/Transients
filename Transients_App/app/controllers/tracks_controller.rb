@@ -17,4 +17,7 @@ class TracksController < ApplicationController
 #        end
     end
     
+    def create
+    end
+    
 end

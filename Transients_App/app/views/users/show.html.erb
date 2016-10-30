@@ -1,2 +1,48 @@
-<h1>users#show</h1>
-<h3>user profile</h3>
+
+<h1><%= current_user.username %></h1>
+ 
+
+<div class="row text-center">
+  <% if flash[:notice] %>
+    <h4 class="warning-notice"><%= flash[:notice] %></h4>
+  <% end %>
+
+  <div class="col-xs-6 col-md-4">
+    <h3>upload track</h3>
+
+    <% if @mumble && @mumble.errors %>
+      <p>Your track failed:</p>
+      <ul class="error-messages">
+        <% @mumble.errors.full_messages.each do |e| %>
+          <li class="warning-notice"><%= e %></li>
+        <% end %>
+      </ul>
+    <% end %>
+
+    <div class="track-new">
+      <%= form_for [@user, Track.new] do |f| %>
+        <div class="field form-group">
+          <%= f.label :title %>
+          <%= f.text_area :title, class: "form-control" %>
+        </div>
+        <div class="field form-group">
+          <%= f.label :category %>
+          <%= f.text_field :category, class: "form-control" %>
+        </div>
+
+        <%= hidden_field_tag "redirect", user_path(@user) %>
+
+        <div class="actions"><%= f.submit "Share", class: "btn btn-primary" %></div>
+      <% end %>
+    </div> <!-- mumble mumble-new -->
+  </div>
+
+  <div class="col-xs-6 col-md-8">
+    <h3>Recent tracks</h3>
+    <% @user.tracks.take(10).each do |track| %>
+      <div class="col-md-6">
+          <%= render 'tracks/track', track: track %>
+      </div>
+    <% end %>
+  </div>
+</div>   

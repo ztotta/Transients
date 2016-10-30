@@ -39,7 +39,7 @@
           <form class="navbar-form navbar-right">
           <ul class="nav navbar-nav navbar-right">
             <% if current_user %>
-                  <li><%= current_user.username %>
+                  <li><%= link_to current_user.username, user_path(current_user) %>
                       &nbsp;&nbsp;&nbsp;&nbsp; </li>
               <li><%= link_to 'log out', session_path('dummy'), method: :delete %></li>
                 <% else %>
