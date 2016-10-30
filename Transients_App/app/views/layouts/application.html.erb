@@ -20,18 +20,21 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">TRANSIENTS</a>
+          <a class="navbar-brand" href="/">TRANSIENTS</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">music<span class="sr-only">(current)</span></a></li>
-            <li><a href="#">stories</a></li>
-            <li><a href="#">poetry</a></li>
-            <li><a href="#">gratitude</a></li>
-            <li><a href="#">wishes</a></li>
-            <li><a href="#">random</a></li>
+<!--            <li class="active"><a href="#">music<span class="sr-only">(current)</span></a></li>-->
+            <li><%= link_to 'music', tracks_path %></li>
+            <li><%= link_to 'stories', tracks_path %></li>
+            <li><%= link_to 'poetry', tracks_path %></li>
+            <li><%= link_to 'gratitude', tracks_path %></li>
+            <li><%= link_to 'wishes', tracks_path %></li>
+            <li><%= link_to 'rants', tracks_path %></li>
+            <li><%= link_to 'rubthelamp', tracks_path %></li>
+            <li><%= link_to 'users', users_path %></li>
           </ul>
           <form class="navbar-form navbar-right">
           <ul class="nav navbar-nav navbar-right">

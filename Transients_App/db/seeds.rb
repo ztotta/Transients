@@ -1,13 +1,27 @@
-User.delete_all
-Track.delete_all
+User.destroy_all
+Track.destroy_all
 
 User.create(username: "CoopsMalone23", email: "coops23@gmail.com", password_digest: "abc123")
 User.create(username: "HoopsMalone23", email: "hoops23@gmail.com", password_digest: "abc124")
 User.create(username: "SwoopsMalone23", email: "swoops23@gmail.com", password_digest: "abc125")
+User.create(username: "ScoopsMalone23", email: "scoops23@gmail.com", password_digest: "abc126")
+User.create(username: "SloopsMalone23", email: "sloops23@gmail.com", password_digest: "abc127")
 
-Track.create(title: "Coops on the town", category: "poetry", user_id: 1)
-Track.create(title: "Hoops on the town", category: "poetry", user_id: 2)
-Track.create(title: "Swoops on the town", category: "poetry", user_id: 3)
+Track.create(title: "Coops on the town", category: "poetry", user_id: 16)
+Track.create(title: "Coops tells it how it is", category: "stories", user_id: 16)
+Track.create(title: "Coops makes a beat", category: "music", user_id: 16)
+Track.create(title: "Hoops on the town", category: "poetry", user_id: 17)
+Track.create(title: "Hoops tells it how it is", category: "stories", user_id: 17)
+Track.create(title: "Hoops makes a beat", category: "music", user_id: 17)
+Track.create(title: "Swoops on the town", category: "poetry", user_id: 18)
+Track.create(title: "Swoops tells it how it is", category: "stories", user_id: 18)
+Track.create(title: "Swoops makes a beat", category: "music", user_id: 18)
+Track.create(title: "Scoops on the town", category: "poetry", user_id: 19)
+Track.create(title: "Scoops tells it how it is", category: "stories", user_id: 19)
+Track.create(title: "Scoops makes a beat", category: "music", user_id: 19)
+Track.create(title: "Sloops on the town", category: "poetry", user_id: 20)
+Track.create(title: "Sloops tells it how it is", category: "stories", user_id: 20)
+Track.create(title: "Sloops makes a beat", category: "music", user_id: 20)
 
 
 
