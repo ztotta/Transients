@@ -33,6 +33,41 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
 }
 
+#upload-track {
+    width: 20%;
+    margin: 1em;
+    text-align: center;
+}
+
+.track-new {
+    padding: 1em 1em 0.5em 1em;
+    margin-bottom: 1em;
+    text-align: left;
+}
+
+ .user-image {
+    display: inline-block;
+    position: relative;
+}
+
+.tracks-table-container {
+    width: 70%;
+    border-radius: 10%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.tracks-table {
+    background-color: #f8f8f8;
+    color: #777;
+    border: 3px solid grey;
+    text-align: left;
+    width: 100%;
+}
+
+#profile-tracks {
+}
+
 .footer {
     background-color: #f8f8f8;
     position: fixed;
@@ -41,4 +76,50 @@ body {
     height: 3%;
     text-align: center;
     color: #777;
+}
+
+
+.tracks-banner {
+    margin: 1em auto 0 auto;
+    text-align: center;
+}
+
+.modal-footer {
+
+}
+
+.actions {
+    display: inline;
+}
+
+.row {
+    margin-bottom: 1em;
+}
+
+a {
+    color: black;
+}
+
+@media only screen and (max-width: 1200px) {
+   .tracks-table-container {
+        width: 80%;
+    }
+}
+
+@media only screen and (max-width: 900px) {
+   .tracks-table-container {
+        width: 87%;
+    }
+}
+
+@media only screen and (max-width: 700px) {
+   .tracks-table-container {
+        width: 94%;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+   .tracks-table-container {
+        width: 100%;
+    }
 }

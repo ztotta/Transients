@@ -1,48 +1,109 @@
-
-<h1><%= current_user.username %></h1>
- 
-
-<div class="row text-center">
-  <% if flash[:notice] %>
-    <h4 class="warning-notice"><%= flash[:notice] %></h4>
-  <% end %>
-
-  <div class="col-xs-6 col-md-4">
-    <h3>upload track</h3>
-
-    <% if @mumble && @mumble.errors %>
-      <p>Your track failed:</p>
-      <ul class="error-messages">
-        <% @mumble.errors.full_messages.each do |e| %>
-          <li class="warning-notice"><%= e %></li>
+    <div class="row tracks-banner">
+        <% if @user %>
+            <div class="user-image">
+              <%= image_tag src="http://larrybrownsports.com/wp-content/uploads/2015/02/karl-malone.jpg", width: "200px", class: "img-circle" %>
+              <div class="caption text-over-image shrink">
+                <h3><%= current_user.username %></h3>
+                <h5>72 plays | 88 followers | following 32</h5>
+                <h5>Kansas City, KS, USA</h5>
+                <h5>just putting the ball in the basket over and over again</h5>
+                <h5>www.<%= current_user.username %>.xyz</h5>
+                <a href="#upload" data-toggle="modal">upload track </a>|<a href="#edit" data-toggle="modal"> edit profile</a>
+              </div>
+            </div>
         <% end %>
-      </ul>
-    <% end %>
+    </div>
 
-    <div class="track-new">
-      <%= form_for [@user, Track.new] do |f| %>
-        <div class="field form-group">
-          <%= f.label :title %>
-          <%= f.text_area :title, class: "form-control" %>
+
+
+      <% if flash[:notice] %>
+        <h4 class="warning-notice"><%= flash[:notice] %></h4>
+      <% end %> 
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tracks-table-container">
+                    <h3>TRACKS</h3>
+                    <table class="table table-hover table-responsive tracks-table">
+                        <thead>
+                          <tr>
+                            <th>TITLE</th>
+                            <th>CATEGORY</th>
+                            <th>DATE</th>
+                            <th>LENGTH</th>
+                          </tr>
+                        </thead>
+                    <tbody>
+                        <% @user.tracks.each do |track| %>
+                          <tr>
+                            <td><%= track.title %></td>
+                            <td><%= track.category %></td>
+                            <td>2016-10-23</td>
+                            <td>0:37</td>
+                          </tr>
+                        <% end %>
+                    </tbody>
+
+                    </table>
+                </div>
+            </div>
         </div>
-        <div class="field form-group">
-          <%= f.label :category %>
-          <%= f.text_field :category, class: "form-control" %>
+    
+    <!--  upload modal  -->
+    <div class="modal fade" id="upload" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>UPLOAD TRACK</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="" class="col-xs-6 col-md-4">
+                        <% if @mumble && @mumble.errors %>
+                          <p>Your track failed:</p>
+                          <ul class="error-messages">
+                            <% @mumble.errors.full_messages.each do |e| %>
+                              <li class="warning-notice"><%= e %></li>
+                            <% end %>
+                          </ul>
+                        <% end %>
+                    </div>
+
+                    <div class="track-new">
+                      <%= form_for [@user, Track.new] do |f| %>
+                        <div class="field form-group">
+                          <%= f.label :title %>
+                          <%= f.text_area :title, class: "form-control" %>
+                        </div>
+                        <div class="field form-group">
+                          <%= f.label :category %>
+                          <%= f.select(:category, ['music', 'stories', 'poetry', 'gratitude', 'wishes', 'rants']) %>
+                          <%= f.file_field :category %>
+                        </div>
+
+                        <%= hidden_field_tag "redirect", user_path(@user) %>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="actions"><%= f.submit "UPLOAD", class: "btn btn-primary" %></div>
+                    <% end %>
+                    <a href="" class="btn btn-default" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
         </div>
-
-        <%= hidden_field_tag "redirect", user_path(@user) %>
-
-        <div class="actions"><%= f.submit "Share", class: "btn btn-primary" %></div>
-      <% end %>
-    </div> <!-- mumble mumble-new -->
-  </div>
-
-  <div class="col-xs-6 col-md-8">
-    <h3>Recent tracks</h3>
-    <% @user.tracks.take(10).each do |track| %>
-      <div class="col-md-6">
-          <%= render 'tracks/track', track: track %>
-      </div>
-    <% end %>
-  </div>
-</div>   
+    </div>
+    <!--  edit modal  -->
+    <div class="modal fade" id="edit" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4>EDIT PROFILE</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="" class="btn btn-default" data-dismiss="modal">CLOSE</a>
+                    <a href="" class="btn btn-primary" data-dismiss="modal">CLOSE</a>
+                </div>
+            </div>
+        </div>
+    </div>

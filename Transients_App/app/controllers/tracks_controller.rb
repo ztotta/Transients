@@ -1,5 +1,4 @@
 class TracksController < ApplicationController
-    
     def index
         if params[:user_id]
             @tracks = Track.where(:user_id => params[:user_id])
@@ -18,6 +17,25 @@ class TracksController < ApplicationController
     end
     
     def create
+        @user = User.find(params[:user_id])
+        @track = @user.tracks.create(track_params)
+
+        if @track.save
+          flash[:notice] = "You have uploaded a new track!"
+
+          if params[:redirect]
+            redirect_to params[:redirect]
+          else
+            redirect_to track_path(@track)
+          end
+        else
+          render :"users/show"
+        end
     end
+    
+    private 
+        def track_params
+            params.require(:track).permit(:title, :category)
+        end
     
 end
