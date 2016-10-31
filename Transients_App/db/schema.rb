@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161028213736) do
+ActiveRecord::Schema.define(version: 20161031170844) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,9 @@ ActiveRecord::Schema.define(version: 20161028213736) do
     t.datetime "updated_at",    null: false
     t.string   "title"
     t.string   "category"
+    t.date     "upload_date"
+    t.string   "track_url"
+    t.integer  "length"
   end
 
   add_index "tracks", ["user_id"], name: "index_tracks_on_user_id", using: :btree
@@ -34,6 +37,9 @@ ActiveRecord::Schema.define(version: 20161028213736) do
     t.string   "password_digest"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "about"
+    t.string   "website"
+    t.string   "img_url"
   end
 
   add_foreign_key "tracks", "users"

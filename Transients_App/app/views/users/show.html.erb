@@ -33,11 +33,11 @@
                           </tr>
                         </thead>
                     <tbody>
-                        <% @user.tracks.each do |track| %>
+                        <% @user.tracks.reverse.each do |track| %>
                           <tr>
                             <td class="table-title"><%= track.title %></td>
                             <td><%= track.category %></td>
-                            <td>2016-10-23</td>
+                            <td><%= track.formatted_time %></td>
                             <td>0:37</td>
                           </tr>
                         <% end %>
