@@ -5,7 +5,7 @@
               <div class="caption text-over-image shrink">
                 <h3><%= current_user.username %></h3>
                 <h5>72 plays | 88 followers | following 32</h5>
-                <h5>Kansas City, KS, USA</h5>
+<!--                <h5>Kansas City, KS, USA</h5>-->
                 <h5>just putting the ball in the basket over and over again</h5>
                 <h5>www.<%= current_user.username %>.xyz</h5>
                 <a href="#upload" data-toggle="modal">upload track </a>|<a href="#edit" data-toggle="modal"> edit profile</a>
@@ -35,7 +35,7 @@
                     <tbody>
                         <% @user.tracks.each do |track| %>
                           <tr>
-                            <td><%= track.title %></td>
+                            <td class="table-title"><%= track.title %></td>
                             <td><%= track.category %></td>
                             <td>2016-10-23</td>
                             <td>0:37</td>

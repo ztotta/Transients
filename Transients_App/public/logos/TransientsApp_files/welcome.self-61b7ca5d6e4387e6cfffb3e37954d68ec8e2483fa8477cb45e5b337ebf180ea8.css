@@ -1,0 +1,32 @@
+/* line 5, /Users/mac/programming-projects/Transients/Transients_App/app/assets/stylesheets/welcome.scss */
+#welcome-header {
+  text-align: center;
+  color: #777;
+  font-size: 48px;
+  background-color: #f8f8f8;
+  margin: 0;
+  padding: 0.5%;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* line 15, /Users/mac/programming-projects/Transients/Transients_App/app/assets/stylesheets/welcome.scss */
+#welcome-slogan {
+  font-size: 24px;
+  font-family: 'Lobster Two', cursive;
+}
+
+/* line 20, /Users/mac/programming-projects/Transients/Transients_App/app/assets/stylesheets/welcome.scss */
+#main-logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+/* line 25, /Users/mac/programming-projects/Transients/Transients_App/app/assets/stylesheets/welcome.scss */
+#main-logo {
+  margin: auto;
+}
+
+/* line 29, /Users/mac/programming-projects/Transients/Transients_App/app/assets/stylesheets/welcome.scss */
+#myCarousel {
+  margin: 0;
+}
