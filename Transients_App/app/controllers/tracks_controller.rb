@@ -1,4 +1,5 @@
 class TracksController < ApplicationController
+    before_action :authorize_destroy, only: [:destroy]
     
     def index
         if params[:user_id]
@@ -43,9 +44,19 @@ class TracksController < ApplicationController
         end
     end
     
+    def destroy
+        @track.destroy
+        redirect_to user_path(current_user)
+    end
+    
+    
     private 
         def track_params
             params.require(:track).permit(:title, :category, :length, :track_url, :plays)
         end
     
+        def authorize_destroy
+          @track = Track.find(params[:id])
+          redirect_to root_path if @track.user != current_user
+        end
 end
