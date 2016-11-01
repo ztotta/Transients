@@ -1,7 +1,12 @@
 class TracksController < ApplicationController
+    
     def index
         if params[:user_id]
             @tracks = Track.where(:user_id => params[:user_id])
+            @user = User.find(params[:user_id])
+        elsif params[:category]
+            @tracks = Track.where(:category => params[:category])
+            @category = Track.where(:category => params[:category])
         else
             @tracks = Track.all
         end
@@ -35,7 +40,7 @@ class TracksController < ApplicationController
     
     private 
         def track_params
-            params.require(:track).permit(:title, :category)
+            params.require(:track).permit(:title, :category, :length, :track_url, :plays)
         end
     
 end

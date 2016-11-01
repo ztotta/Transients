@@ -27,13 +27,13 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
 <!--            <li class="active"><a href="#">music<span class="sr-only">(current)</span></a></li>-->
-            <li><%= link_to 'music', tracks_path %></li>
-            <li><%= link_to 'stories', tracks_path %></li>
-            <li><%= link_to 'poetry', tracks_path %></li>
-            <li><%= link_to 'gratitude', tracks_path %></li>
-            <li><%= link_to 'wishes', tracks_path %></li>
-            <li><%= link_to 'rants', tracks_path %></li>
-            <li><%= link_to 'rubthelamp', tracks_path %></li>
+            <li><%= link_to 'music', tracks_path(:category => :music) %></li>
+            <li><%= link_to 'stories', tracks_path(:category => :stories) %></li>
+            <li><%= link_to 'poetry', tracks_path(:category => :poetry) %></li>
+            <li><%= link_to 'gratitude', tracks_path(:category => :gratitude) %></li>
+            <li><%= link_to 'wishes', tracks_path(:category => :wishes) %></li>
+            <li><%= link_to 'rants', tracks_path(:category => :rants) %></li>
+            <li><%= link_to 'rubthelamp', tracks_path(:category => :poetry) %></li>
             <li><%= link_to 'users', users_path %></li>
           </ul>
           <form class="navbar-form navbar-right">

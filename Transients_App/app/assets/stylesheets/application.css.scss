@@ -34,6 +34,16 @@ body {
     background-attachment: fixed;
 }
 
+.btn-circle {
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 12px;
+  line-height: 1.428571429;
+  border-radius: 15px;
+}
+
 .navbar {
     margin: 0 0 0.5% 0;
     font-family: 'Source Sans Pro', sans-serif;
@@ -107,8 +117,25 @@ a {
     color: black;
 }
 
+a:link { 
+    color: #777;
+}
+
+a:visited { 
+    color: #777;
+    text-decoration: none;
+}
+
+#users-index {
+    width: 70%;
+    margin: 0 auto 1em auto;
+}
+
 @media only screen and (max-width: 1200px) {
    .tracks-table-container {
+        width: 80%;
+    }
+    #users-index {
         width: 80%;
     }
 }
@@ -117,16 +144,25 @@ a {
    .tracks-table-container {
         width: 87%;
     }
+    #users-index {
+        width: 87%;
+    }
 }
 
 @media only screen and (max-width: 700px) {
    .tracks-table-container {
         width: 94%;
     }
+    #users-index {
+        width: 94%;
+    }
 }
 
 @media only screen and (max-width: 500px) {
    .tracks-table-container {
+        width: 100%;
+    }
+    #users-index {
         width: 100%;
     }
 }
@@ -138,4 +174,9 @@ a {
 .table-title {
     border-collapse: collapse;
     overflow-x: hidden;
+}
+
+.users-index {
+    text-align: center;
+    display: block;
 }

@@ -1,31 +1,80 @@
-tracks#index
-
-<h1>User's profile (viewed by !user)</h1>
-<h3>/users/user_id/tracks</h3>
-<h5>----------</h5>
-<h1>List of tracks in a certain category</h1>
-<h3>/tracks</h3>
-<h3>/tracks(.:format)</h3>
-
-
-<h1>list of user's tracks</h1>
- 
-<table>
-  <tr>
-    <th>title</th>
-    <th>category</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @tracks.each do |track| %>
-  <tr>
-    <td><%= track.title %></td>
-    <td><%= track.category %></td>
-  </tr>
+    <div class="row tracks-banner">
+        <% if @user %>
+            <div class="user-image">
+              <%= image_tag @user.img_url, width: "200px", class: "img-circle" %>
+              <div class="caption text-over-image shrink">
+                <h3><%= @user.username %></h3>
+                <h5>72 plays | 88 followers | following 32</h5>
+                <h5><%= @user.about %></h5>
+                <h5><%= @user.website %></h5>
+              </div>
+            </div>
+        <% end %>
+    </div>
+       
+<% if @category %>
+    <div class="row tracks-banner">
+        <div class="user-image">
+          <%= image_tag 
+            if @category == "music"
+                "logos/lamp_music.png", 
+            elsif @category == "stories" 
+                "logos/lamp_stories.png", 
+            elsif @category == "poetry" 
+                "logos/lamp_poetry.png", 
+            elsif @category == "gratitude" 
+                "logos/lamp_outline.png", 
+            elsif @category == "wishes" 
+                "logos/lamp_outline.png", 
+            elsif @category == "rants" 
+                "logos/lamp_outline.png",
+            end    
+          width: "200px", class: "img-circle" %>
+          <div class="caption text-over-image shrink">
+            <h3><%= @user.username %></h3>
+            <h5>72 plays | 88 followers | following 32</h5>
+            <h5><%= @user.about %></h5>
+            <h5><%= @user.website %></h5>
+          </div>
+        </div>
+    </div>
 <% end %>
 
-</table>
- 
-<br>
+
+
+      <% if flash[:notice] %>
+        <h4 class="warning-notice"><%= flash[:notice] %></h4>
+      <% end %> 
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tracks-table-container">
+                    <h3>TRACKS</h3>
+                    <table class="table table-hover table-responsive tracks-table">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>TITLE</th>
+                            <th>CATEGORY</th>
+                            <th>DATE</th>
+                            <th>LENGTH</th>
+                            <th>PLAYS</th>
+                          </tr>
+                        </thead>
+                    <tbody>
+                        <% @tracks.reverse.each do |track| %>
+                          <tr> 
+<!--                              <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td>-->
+                            <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                            <td class="table-title"><%= link_to track.title, track.track_url, :target => "_blank" %></td>
+                            <td><%= track.category %></td>
+                            <td><%= track.formatted_time %></td>
+                            <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                            <td><%= track.plays %></td>
+                          </tr>
+                        <% end %>
+                    </tbody>
+
+                    </table>
+                </div>
+            </div>
+        </div>
