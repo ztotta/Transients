@@ -5,8 +5,13 @@ class TracksController < ApplicationController
             @tracks = Track.where(:user_id => params[:user_id])
             @user = User.find(params[:user_id])
         elsif params[:category]
-            @tracks = Track.where(:category => params[:category])
-            @category = Track.where(:category => params[:category])
+            if params[:category] == "random"
+                @tracks = Track.limit(1).order("RANDOM()")
+                @category = ""
+            else
+                @tracks = Track.where(:category => params[:category])
+                @category = Track.where(:category => params[:category])
+            end
         else
             @tracks = Track.all
         end

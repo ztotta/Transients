@@ -31,6 +31,9 @@
                           <tr>
                             <th></th>
                             <th>TITLE</th>
+                            <% if @category %>
+                                <th>USER</th>
+                            <% end %>
                             <th>CATEGORY</th>
                             <th>DATE</th>
                             <th>LENGTH</th>
@@ -43,6 +46,9 @@
 <!--                              <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td>-->
                             <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
                             <td class="table-title"><%= link_to track.title, track.track_url, :target => "_blank" %></td>
+                            <% if @category %>
+                                <td><%= User.where(:id => track.user_id) %></td>
+                            <% end %>
                             <td><%= track.category %></td>
                             <td><%= track.formatted_time %></td>
                             <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
