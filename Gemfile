@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.2.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.7'
@@ -15,6 +16,7 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'faker' 
+gem 'rails_12factor'
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form' 
