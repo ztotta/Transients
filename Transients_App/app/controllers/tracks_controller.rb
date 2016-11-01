@@ -49,6 +49,14 @@ class TracksController < ApplicationController
         redirect_to user_path(current_user)
     end
     
+    def tracks_played
+        # if track has been played
+            # redirect_to user_tracks
+        # else
+            # insert row in database to indicate song has been played
+            # render song play view
+        
+    end
     
     private 
         def track_params
