@@ -46,9 +46,9 @@
                           <tr> 
 <!--                              <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td>-->
                             <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                            <td class="table-title"><%= link_to track.title, track.track_url, :target => "_blank" %></td>
+                            <td class="table-title"><%= link_to track.title, track.track_url, :target => "_blank" %></td> <!-- track.track_url, :target => "_blank"
                             <% if @category %>
-                                <td><%= link_to user_name, user_tracks_path(User.find(track.user_id).id) %></td>
+                                <td><%= link_to user_name, user_tracks_path(track.user_id) %></td>
                             <% end %>
                             <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                             <td><%= track.formatted_time %></td>

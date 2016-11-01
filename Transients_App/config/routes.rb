@@ -12,7 +12,6 @@ Rails.application.routes.draw do
     # Create a better looking URL for logging in
     get '/login', to: 'sessions#new'
     get '/logout', to: 'welcome#index'
-    get 'users/:user_id/tracks/:song_id' 'tracks#track_played?'
     
     
     

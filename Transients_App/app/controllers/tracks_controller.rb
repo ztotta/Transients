@@ -54,9 +54,25 @@ class TracksController < ApplicationController
         # can replicate the other pages in the site 
         # (rubthelamp, categories, other's profile, current_user's profile)
         @track = Track.find(params[:id])
-        if current_user.played_tracks.includes? @track
+        
+        if current_user.played_tracks.include? @track
             redirect_to user_tracks, alert: "Nice try, partner" 
         else
+            if params[:user_id]
+                @tracks = Track.where(:user_id => params[:user_id])
+                @user = User.find(params[:user_id])
+            elsif params[:category]
+                if params[:category] == "random"
+                    @tracks = Track.limit(1).order("RANDOM()")
+                    @category = ""
+                else
+                    @tracks = Track.where(:category => params[:category])
+                    @category = Track.where(:category => params[:category])
+                end
+            else
+                @tracks = Track.all
+            end
+            
             UserTrack.create({user_id: current_user.id, track_id: @track.id})
         end        
     end
