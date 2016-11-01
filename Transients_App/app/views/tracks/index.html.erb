@@ -14,33 +14,11 @@
        
 <% if @category %>
     <div class="row tracks-banner">
-        <div class="user-image">
-          <%= image_tag 
-            if @category == "music"
-                "logos/lamp_music.png", 
-            elsif @category == "stories" 
-                "logos/lamp_stories.png", 
-            elsif @category == "poetry" 
-                "logos/lamp_poetry.png", 
-            elsif @category == "gratitude" 
-                "logos/lamp_outline.png", 
-            elsif @category == "wishes" 
-                "logos/lamp_outline.png", 
-            elsif @category == "rants" 
-                "logos/lamp_outline.png",
-            end    
-          width: "200px", class: "img-circle" %>
-          <div class="caption text-over-image shrink">
-            <h3><%= @user.username %></h3>
-            <h5>72 plays | 88 followers | following 32</h5>
-            <h5><%= @user.about %></h5>
-            <h5><%= @user.website %></h5>
-          </div>
+        <div class="user-image"> <!-- how to create conditional to apply category-specific lamp img? -->
+            <%= image_tag "/logos/main_logo.png", width: "400px" %>
         </div>
     </div>
 <% end %>
-
-
 
       <% if flash[:notice] %>
         <h4 class="warning-notice"><%= flash[:notice] %></h4>
@@ -48,7 +26,6 @@
         <div class="row">
             <div class="col-xs-12">
                 <div class="tracks-table-container">
-                    <h3>TRACKS</h3>
                     <table class="table table-hover table-responsive tracks-table">
                         <thead>
                           <tr>
