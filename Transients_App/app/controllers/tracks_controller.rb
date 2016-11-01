@@ -49,13 +49,16 @@ class TracksController < ApplicationController
         redirect_to user_path(current_user)
     end
     
-    def tracks_played
-        # if track has been played
-            # redirect_to user_tracks
-        # else
-            # insert row in database to indicate song has been played
-            # render song play view
-        
+    def show
+        # need to create @instances like in index so that the show page
+        # can replicate the other pages in the site 
+        # (rubthelamp, categories, other's profile, current_user's profile)
+        @track = Track.find(params[:id])
+        if current_user.played_tracks.includes? @track
+            redirect_to user_tracks, alert: "Nice try, partner" 
+        else
+            UserTrack.create({user_id: current_user.id, track_id: @track.id})
+        end        
     end
     
     private 
