@@ -1,7 +1,8 @@
 <div class="row tracks-banner">
     <% if @user == current_user %>
         <div class="user-image">
-            <%= image_tag current_user.img_url, width: "200px", class: "img-circle" %>     
+
+            <%= image_tag @user.image.url(:medium), width: "200px", class: "img-circle" %>   
           <div class="caption text-over-image shrink">
             <h3><%= current_user.username %></h3>
             <h5>72 plays | 88 followers | following 32</h5>
@@ -87,7 +88,6 @@
                     </div>
                     <div class="modal-body">
                         <%= form_for @user do |f| %>
-
                         <% if @user.errors.any? %>
                             <h4>Form is invalid:</h4>
                             <ul class="error-messages">
@@ -113,11 +113,10 @@
                         <%= f.text_field :website %>
                         </div>
                         <div class="field">
-                        <%= f.label :img_url %>
-                        <%= f.text_field :img_url %>
+                            <%= f.label :image %>
+                            <%= f.file_field :image %>
                         </div>
                     </div>
-                </div>
                 <div class="modal-footer">
                         <div class="actions"><%= f.submit "SAVE", class: "btn btn-primary" %></div>
                     <% end %>
