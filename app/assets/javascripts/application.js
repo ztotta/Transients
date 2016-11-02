@@ -16,9 +16,6 @@
 
 //= require bootstrap
 //= require_tree .
- 
-console.log('scirp');
-console.log($('#track-list .song-row').length);
 
 if ($('#track-list .song-row').length >= 20 ) {
     $('body').append("<p id='load-more'><span>LOAD MORE</span></p>");
@@ -44,9 +41,11 @@ $('.song-row').click(function(){
     $('#wave-counting').attr("id", "waveform" + waveCounter);
     var wavesurfer = WaveSurfer.create({
             container: ('#waveform' + waveCounter),
-            waveColor: 'violet',
+            waveColor: '#f8f8f8',
             progressColor: 'purple',
-            height: 37
+            height: 37,
+//            normalize: true;
+//            barWidth: 3;
     });
     wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
     wavecounter++

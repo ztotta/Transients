@@ -26,30 +26,34 @@
                     <tbody>
                         <% if !@user %>
                             <% @tracks.reverse.first(20).each do |track| %>
-                                <% user_name = User.find(track.user_id).username %>
-                                <tr class="song-row"> 
-                                    <!--    <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td> --->
-                                    <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                                    <td class="table-title"><%= track.title %></td> 
-                                    <td><%= link_to user_name, user_path(track.user_id) unless !@category %></td> <!-- did inline conditional work? -->
-                                    <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
-                                    <td><%= track.formatted_time %></td>
-                                    <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
-                                    <td><%= track.plays %></td>
-                                </tr>
+                                <% if current_user.id != UserTrack.where({track_id: track.id}) %>
+                                    <% user_name = User.find(track.user_id).username %>
+                                    <tr class="song-row"> 
+                                        <!--    <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td> --->
+                                        <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                                        <td class="table-title"><%= track.title %></td> 
+                                        <td><%= link_to user_name, user_path(track.user_id) unless !@category %></td> <!-- did inline conditional work? -->
+                                        <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
+                                        <td><%= track.formatted_time %></td>
+                                        <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                                        <td><%= track.plays %></td>
+                                    </tr>
+                                <% end %>
                             <% end %>
 <!--                                <tr><div id="waveform"></div></tr> -->
                         <% else %>
                             <% @user.tracks.reverse.first(20).each do |track| %>
-                                <tr class="song-row">
-                                    <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                                    <td class="table-title"><%= track.title %></td>
-                                    <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
-                                    <td><%= track.formatted_time %></td>
-                                    <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
-                                    <td><%= track.plays %></td>
-                                    <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
-                                </tr> 
+                                <% if current_user.id != UserTrack.where({track_id: track.id}) %>
+                                    <tr class="song-row">
+                                        <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                                        <td class="table-title"><%= track.title %></td>
+                                        <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
+                                        <td><%= track.formatted_time %></td>
+                                        <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                                        <td><%= track.plays %></td>
+                                        <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
+                                    </tr> 
+                                <% end %>
                             <% end %>
 
                         <% end %>

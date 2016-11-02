@@ -5,6 +5,9 @@ class Track < ActiveRecord::Base
     has_many :played_users, :through => :user_tracks,
                                     source: :user
     
+#    has_attached_file :audio
+#    validates_attachment_content_type :audio, :content_type => /\Aaudio/
+    
     def formatted_time
         created_at.strftime("%b %-d, %Y") 
     end
