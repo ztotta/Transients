@@ -1,9 +1,6 @@
 <!-- create conditionals and track listing 
     partial to replicate different views -->
     
-<h1>Show Page</h1>
-
-
 <!--
 if params[:user]
     show user page
@@ -13,7 +10,10 @@ elsif params[:category]
 
 elsif 
 -->
+<% if @user %>
+    <%= render 'users/user_image' %>
+<% end %>
 
-<div id="main-logo-container"><img id="main-logo" src="logos/waveform_fake.png" alt="poetry"></div>
+<div id="main-logo-container"><img src="logos/waveform_fake.png" alt="poetry"></div>
 
 <%= render 'track_list' %>

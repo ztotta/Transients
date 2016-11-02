@@ -1,3 +1,9 @@
+<!--clickable track-titlerows from making wavesurfer transition-->
+    <!--  @users  -->
+    <td class="table-title"><%= link_to track.title, track_path(track.id, category: params[:category], :user_id => track.user_id) %></td> <!-- track.track_url, :target => "_blank" -->
+    <!--  !@users  -->
+    <td class="table-title"><%= link_to track.title, track_path(track.id, category: params[:category], :user_id => track.user_id) %></td> <!-- track.track_url, :target => "_blank" -->
+
 <!--tracks:-->
 <!--    index.html.erb-->
          <% if flash[:notice] %>

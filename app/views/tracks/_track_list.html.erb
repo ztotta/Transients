@@ -1,3 +1,4 @@
+
 <!--  conditionals maze?  -->
     <% if flash[:notice] %>
         <h4 class="warning-notice"><%= flash[:notice] %></h4>
@@ -28,8 +29,8 @@
                                 <% user_name = User.find(track.user_id).username %>
                                 <tr class="song-row"> 
                                     <!--    <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td> --->
-                                    <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                                    <td class="table-title"><%= link_to track.title, track_path(track.id, category: params[:category]) %></td> <!-- track.track_url, :target => "_blank" -->
+                                    <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                                    <td class="table-title"><%= track.title %></td> 
                                     <td><%= link_to user_name, user_path(track.user_id) unless !@category %></td> <!-- did inline conditional work? -->
                                     <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                     <td><%= track.formatted_time %></td>
@@ -37,21 +38,37 @@
                                     <td><%= track.plays %></td>
                                 </tr>
                             <% end %>
+<!--                                <tr><div id="waveform"></div></tr> -->
                         <% else %>
                             <% @user.tracks.reverse.first(20).each do |track| %>
                                 <tr class="song-row">
-                                    <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                                    <td class="table-title"><%= link_to track.title, track_path(track.id, category: params[:category]) %></td> <!-- track.track_url, :target => "_blank" -->
+                                    <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                                    <td class="table-title"><%= track.title %></td>
                                     <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                     <td><%= track.formatted_time %></td>
                                     <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
                                     <td><%= track.plays %></td>
                                     <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
-                                </tr>    
+                                </tr> 
                             <% end %>
+
                         <% end %>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
+    
+    <td id="waveformTemplate" colspan="7"></td>
+    
+<!--
+    <div style="display:none" id="waveform-template">
+        <td colspan="7"><div id="waveform" >
+            <progress id="progress" class="progress progress-striped" value="100" max="100" style="display: none;"></progress>
+            <wave style="position: absolute; z-index: 2; left: 0px; top: 0px; bottom: 0px; overflow: hidden; width: 0px; display: block; box-sizing: border-box; border-right: 1px solid rgb(255, 255, 255);">
+                  <canvas width="1820" height="256" style="width: 910px;"></canvas>
+            </wave>
+        </div></td>
+    </div>
+-->
+    
