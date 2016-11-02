@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     has_many :played_tracks, :through => :user_tracks,
                                         source: :track
     
-    has_attached_file :image, styles: {medium: "200x200#"}
+    has_attached_file :image, styles: { medium: "200x200#", thumb: "150x150#" }
     validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
     
     has_secure_password
