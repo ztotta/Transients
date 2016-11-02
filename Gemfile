@@ -16,7 +16,6 @@ gem 'coffee-rails', '~> 4.1.0'
 # gem 'therubyracer', platforms: :ruby
 
 gem 'faker' 
-gem 'rails_12factor'
 gem "paperclip", "~> 5.0.0"
 gem 'aws-sdk', '~> 2.3'
 gem 'bootstrap-sass', '~> 3.2.0'

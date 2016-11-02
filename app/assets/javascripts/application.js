@@ -31,13 +31,7 @@ var wavez = "wavesurfer"+waveCounter
 
 $('.song-row').click(function(){
     $(this).fadeOut(100);
-    $('.footer').html(
-        `<div id="wave-counting" >
-            <progress id="progress" class="progress progress-striped" value="100" max="100" style="display: none;"></progress>
-            <wave style="position: absolute; z-index: 2; left: 0px; top: 0px; bottom: 0px; overflow: hidden; width: 0px; display: block; box-sizing: border-box; border-right: 1px solid rgb(255, 255, 255);">
-                <canvas width="1820" height="256" style="width: 910px;"></canvas>
-            </wave>
-        </div>`);
+    $('.footer').html('<div id="wave-counting"><progress id="progress" class="progress progress-striped" value="100" max="100" style="display: none;"></progress><wave style="position: absolute; z-index: 2; left: 0px; top: 0px; bottom: 0px; overflow: hidden; width: 0px; display: block; box-sizing: border-box; border-right: 1px solid rgb(255, 255, 255);"><canvas width="1820" height="256" style="width: 910px;"></canvas></wave></div>');
     $('#wave-counting').attr("id", "waveform" + waveCounter);
     var wavesurfer = WaveSurfer.create({
             container: ('#waveform' + waveCounter),
