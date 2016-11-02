@@ -1,17 +1,3 @@
-    <div class="row tracks-banner">
-        <% if @user %>
-            <div class="user-image">
-              <%= image_tag @user.img_url, width: "200px", class: "img-circle" %>
-              <div class="caption text-over-image shrink">
-                <h3><%= @user.username %></h3>
-                <h5>72 plays | 88 followers | following 32</h5>
-                <h5><%= @user.about %></h5>
-                <h5><%= link_to @user.website, @user.website, :target => "_blank" %></h5>
-              </div>
-            </div>
-        <% end %>
-    </div>
-       
 <% if @category %>
     <div class="row tracks-banner">
         <div class="user-image"> <!-- how to create conditional to apply category-specific lamp img? -->
@@ -20,45 +6,4 @@
     </div>
 <% end %>
 
-      <% if flash[:notice] %>
-        <h4 class="warning-notice"><%= flash[:notice] %></h4>
-      <% end %> 
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="tracks-table-container">
-                    <table class="table table-hover table-responsive tracks-table">
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th>TITLE</th>
-                            <% if @category %>
-                                <th>USER</th>
-                            <% end %>
-                            <th>CATEGORY</th>
-                            <th>DATE</th>
-                            <th>LENGTH</th>
-                            <th>PLAYS</th>
-                          </tr>
-                        </thead>
-                    <tbody>
-                        <% @tracks.reverse.each do |track| %>
-                          <% user_name = User.find(track.user_id).username %>
-                          <tr> 
-<!--                              <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td>-->
-                            <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                            <td class="table-title"><%= link_to track.title, track.track_url, :target => "_blank" %></td> <!-- track.track_url, :target => "_blank"
-                            <% if @category %>
-                                <td><%= link_to user_name, user_tracks_path(track.user_id) %></td>
-                            <% end %>
-                            <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
-                            <td><%= track.formatted_time %></td>
-                            <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
-                            <td><%= track.plays %></td>
-                          </tr>
-                        <% end %>
-                    </tbody>
-
-                    </table>
-                </div>
-            </div>
-        </div>
+<%= render 'track_list' %>

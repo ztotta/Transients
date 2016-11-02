@@ -1,153 +1,128 @@
-    <div class="row tracks-banner">
-        <% if @user %>
-            <div class="user-image">
-              <%= image_tag @user.img_url, width: "200px", class: "img-circle" %>
-              <div class="caption text-over-image shrink">
-                <h3><%= current_user.username %></h3>
-                <h5>72 plays | 88 followers | following 32</h5>
-                <h5><%= current_user.about %></h5>
-                <h5><%= link_to current_user.website, current_user.website, :target => "_blank" %></h5>
-                <a href="#upload" data-toggle="modal">upload track </a>|<a href="#edit" data-toggle="modal"> edit profile</a>
-              </div>
-            </div>
-        <% end %>
-    </div>
+<div class="row tracks-banner">
+    <% if @user == current_user %>
+        <div class="user-image">
+            <%= image_tag current_user.img_url, width: "200px", class: "img-circle" %>     
+          <div class="caption text-over-image shrink">
+            <h3><%= current_user.username %></h3>
+            <h5>72 plays | 88 followers | following 32</h5>
+            <h5><%= current_user.about %></h5>
+            <h5><%= link_to current_user.website, current_user.website, :target => "_blank" %></h5>
+            <a href="#upload" data-toggle="modal">upload track </a>|<a href="#edit" data-toggle="modal"> edit profile</a>
+          </div>
+        </div>
+    <% else %>
+        <div class="user-image">
+            <%= image_tag @user.img_url, width: "200px", class: "img-circle" %>      
+          <div class="caption text-over-image shrink">
+            <h3><%= @user.username %></h3>
+            <h5>72 plays | 88 followers | following 32</h5>
+            <h5><%= @user.about %></h5>
+            <h5><%= link_to @user.website, @user.website, :target => "_blank" %></h5>
+          </div>
+        </div>
+    <% end %>
+</div>
 
-      <% if flash[:notice] %>
-        <h4 class="warning-notice"><%= flash[:notice] %></h4>
-      <% end %> 
-        <div class="row">
-            <div class="col-xs-12">
-                <div class="tracks-table-container">
-                    <h3>TRACKS</h3>
-                    <table class="table table-hover table-responsive tracks-table">
-                        <thead>
-                          <tr>
-                            <th></th>
-                            <th>TITLE</th>
-                            <th>CATEGORY</th>
-                            <th>DATE</th>
-                            <th>LENGTH</th>
-                            <th>PLAYS</th>
-                            <th></th>
-                          </tr>
-                        </thead>
-                    <tbody>
-                        <% @user.tracks.reverse.each do |track| %>
-                          <tr> 
-<!--                              <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td>-->
-                            <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
-                            <td class="table-title"><%= link_to track.title, track.track_url, :target => "_blank" %></td>
-                            <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
-                            <td><%= track.formatted_time %></td>
-                            <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
-                            <td><%= track.plays %></td>
-                            <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
-                          </tr>
+<%= render 'tracks/track_list' %>
+
+<% if @user == current_user %>        
+
+    <!--  upload modal  -->
+    <div>
+        <div class="modal fade" id="upload" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>UPLOAD TRACK</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div id="" class="col-xs-6 col-md-4">
+                            <% if @mumble && @mumble.errors %>
+                              <p>Your track failed:</p>
+                              <ul class="error-messages">
+                                <% @mumble.errors.full_messages.each do |e| %>
+                                  <li class="warning-notice"><%= e %></li>
+                                <% end %>
+                              </ul>
+                            <% end %>
+                        </div>
+
+                        <div class="track-new">
+                          <%= form_for [@user, Track.new] do |f| %>
+                            <div class="field form-group">
+                              <%= f.label :title %>
+                              <%= f.text_area :title, class: "form-control" %>
+                            </div>
+                            <div class="field form-group">
+                              <%= f.label :category %>
+                              <%= f.select(:category, ['music', 'stories', 'poetry', 'gratitude', 'wishes', 'rants']) %>
+                              <%= f.file_field :category %>
+                            </div>
+                           <div class="field">
+                            <%= f.label :track_url %>
+                            <%= f.text_field :track_url %>
+                            </div>
+                            <div class="field">
+                            <%= f.label :length %>
+                            <%= f.text_field :length %>
+                            </div>
+                            <%= hidden_field_tag "redirect", user_path(@user) %>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="actions"><%= f.submit "UPLOAD", class: "btn btn-primary" %></div>
                         <% end %>
-                    </tbody>
-
-                    </table>
+                        <a href="" class="btn btn-default" data-dismiss="modal">CLOSE</a>
+                    </div>
                 </div>
             </div>
         </div>
-    
-    <!--  upload modal  -->
-<div>
-    <div class="modal fade" id="upload" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>UPLOAD TRACK</h4>
-                </div>
-                <div class="modal-body">
-                    <div id="" class="col-xs-6 col-md-4">
-                        <% if @mumble && @mumble.errors %>
-                          <p>Your track failed:</p>
-                          <ul class="error-messages">
-                            <% @mumble.errors.full_messages.each do |e| %>
-                              <li class="warning-notice"><%= e %></li>
-                            <% end %>
-                          </ul>
-                        <% end %>
+    </div>
+    <!--  edit modal  -->
+        <div class="modal fade" id="edit" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4>EDIT PROFILE</h4>
                     </div>
+                    <div class="modal-body">
+                        <%= form_for @user do |f| %>
 
-                    <div class="track-new">
-                      <%= form_for [@user, Track.new] do |f| %>
-                        <div class="field form-group">
-                          <%= f.label :title %>
-                          <%= f.text_area :title, class: "form-control" %>
-                        </div>
-                        <div class="field form-group">
-                          <%= f.label :category %>
-                          <%= f.select(:category, ['music', 'stories', 'poetry', 'gratitude', 'wishes', 'rants']) %>
-                          <%= f.file_field :category %>
-                        </div>
-                       <div class="field">
-                        <%= f.label :track_url %>
-                        <%= f.text_field :track_url %>
+                        <% if @user.errors.any? %>
+                            <h4>Form is invalid:</h4>
+                            <ul class="error-messages">
+                              <% @user.errors.full_messages.each do |message| %>
+                                <li class="warning-notice"><%= message %></li>
+                              <% end %>
+                            </ul>
+                        <% end %>
+                        <div class="field">
+                        <%= f.label :username %>
+                        <%= f.text_field :username %>
                         </div>
                         <div class="field">
-                        <%= f.label :length %>
-                        <%= f.text_field :length %>
+                        <%= f.label :email %>
+                        <%= f.text_field :email %>
                         </div>
-                        <%= hidden_field_tag "redirect", user_path(@user) %>
+                        <div class="field">
+                        <%= f.label :about %>
+                        <%= f.text_field :about %>
+                        </div>
+                        <div class="field">
+                        <%= f.label :website %>
+                        <%= f.text_field :website %>
+                        </div>
+                        <div class="field">
+                        <%= f.label :img_url %>
+                        <%= f.text_field :img_url %>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <div class="actions"><%= f.submit "UPLOAD", class: "btn btn-primary" %></div>
+                        <div class="actions"><%= f.submit "SAVE", class: "btn btn-primary" %></div>
                     <% end %>
-                    <a href="" class="btn btn-default" data-dismiss="modal">CLOSE</a>
+                        <a href="" class="btn btn-default" data-dismiss="modal">CLOSE</a>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-    <!--  edit modal  -->
-    <div class="modal fade" id="edit" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4>EDIT PROFILE</h4>
-                </div>
-                <div class="modal-body">
-                    <%= form_for @user do |f| %>
-
-                    <% if @user.errors.any? %>
-                        <h4>Form is invalid:</h4>
-                        <ul class="error-messages">
-                          <% @user.errors.full_messages.each do |message| %>
-                            <li class="warning-notice"><%= message %></li>
-                          <% end %>
-                        </ul>
-                    <% end %>
-                    <div class="field">
-                    <%= f.label :username %>
-                    <%= f.text_field :username %>
-                    </div>
-                    <div class="field">
-                    <%= f.label :email %>
-                    <%= f.text_field :email %>
-                    </div>
-                    <div class="field">
-                    <%= f.label :about %>
-                    <%= f.text_field :about %>
-                    </div>
-                    <div class="field">
-                    <%= f.label :website %>
-                    <%= f.text_field :website %>
-                    </div>
-                    <div class="field">
-                    <%= f.label :img_url %>
-                    <%= f.text_field :img_url %>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                    <div class="actions"><%= f.submit "SAVE", class: "btn btn-primary" %></div>
-                <% end %>
-                    <a href="" class="btn btn-default" data-dismiss="modal">CLOSE</a>
-            </div>
-        </div>
-    </div>
-</div>
+<% end %>

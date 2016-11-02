@@ -17,6 +17,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 gem 'faker' 
 gem 'rails_12factor'
+gem "paperclip", "~> 5.0.0"
 
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'bootstrap_form' 

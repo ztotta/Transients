@@ -1,0 +1,83 @@
+<!--tracks:-->
+<!--    index.html.erb-->
+         <% if flash[:notice] %>
+        <h4 class="warning-notice"><%= flash[:notice] %></h4>
+      <% end %> 
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="tracks-table-container">
+                    <table class="table table-hover table-responsive tracks-table">
+                        <thead>
+                          <tr>
+                            <th></th>
+                            <th>TITLE</th>
+                            <% if @category %>
+                                <th>USER</th>
+                            <% end %>
+                            <th>CATEGORY</th>
+                            <th>DATE</th>
+                            <th>LENGTH</th>
+                            <th>PLAYS</th>
+                          </tr>
+                        </thead>
+                    <tbody>
+                        <% @tracks.reverse.each do |track| %>
+                          <% user_name = User.find(track.user_id).username %>
+                          <tr> 
+<!--                              <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td> --->
+                            <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                            <td class="table-title"><%= link_to track.title, "tracks/#{track.id}?category=#{params[:category]}"  %></td> <!-- track.track_url, :target => "_blank" -->
+                            <% if @category %>
+                                <td><%= link_to user_name, user_path(track.user_id) %></td>
+                            <% end %>
+                            <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
+                            <td><%= track.formatted_time %></td>
+                            <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                            <td><%= track.plays %></td>
+                          </tr>
+                        <% end %>
+                    </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+<!-- users: -->
+    <!-- show.html.erb -->
+        <% if flash[:notice] %>
+            <h4 class="warning-notice"><%= flash[:notice] %></h4>
+        <% end %> 
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="tracks-table-container">
+                        <table class="table table-hover table-responsive tracks-table">
+                            <thead>
+                              <tr>
+                                <th></th>
+                                <th>TITLE</th>
+                                <th>CATEGORY</th>
+                                <th>DATE</th>
+                                <th>LENGTH</th>
+                                <th>PLAYS</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                        <tbody>
+                            <% @user.tracks.reverse.each do |track| %>
+                              <tr> 
+                                <!--  <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td>-->
+                                <td><a href="#"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>
+                                <td class="table-title"><%= link_to track.title, track_path(track.id, user: @user.id) %></td>
+                                <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
+                                <td><%= track.formatted_time %></td>
+                                <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                                <td><%= track.plays %></td>
+                                <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
+                              </tr>
+                            <% end %>
+                        </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>

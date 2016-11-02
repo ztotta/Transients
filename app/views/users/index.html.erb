@@ -5,7 +5,7 @@
                 <div class="user-image">
                     <%= image_tag user.img_url, width: "200px", class: "img-circle" %>
                 </div>
-                <p><%= link_to user.username, user_tracks_path(user) %></p>
+                <p><%= link_to user.username, user_path(user) %></p>
             </div>
         <% end %>
     </div>

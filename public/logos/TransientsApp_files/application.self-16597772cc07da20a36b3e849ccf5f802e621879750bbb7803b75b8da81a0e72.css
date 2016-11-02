@@ -3377,11 +3377,7 @@ table th[class*="col-"] {
   .table-responsive {
     width: 100%;
     margin-bottom: 15px;
-    overflow-y: hidden;
-    overflow-x: auto;
-    -ms-overflow-style: -ms-autohiding-scrollbar;
     border: 1px solid #ddd;
-    -webkit-overflow-scrolling: touch;
   }
   /* line 182, /Users/mac/.rbenv/versions/2.2.3/lib/ruby/gems/2.2.0/gems/bootstrap-sass-3.2.0.2/assets/stylesheets/bootstrap/_tables.scss */
   .table-responsive > .table {

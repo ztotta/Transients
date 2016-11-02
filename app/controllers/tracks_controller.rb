@@ -2,6 +2,8 @@ class TracksController < ApplicationController
     before_action :authorize_destroy, only: [:destroy]
     
     def index
+        session[:return_to] = request.referer
+        
         if params[:user_id]
             @tracks = Track.where(:user_id => params[:user_id])
             @user = User.find(params[:user_id])
@@ -56,7 +58,7 @@ class TracksController < ApplicationController
         @track = Track.find(params[:id])
         
         if current_user.played_tracks.include? @track
-            redirect_to user_tracks, alert: "Nice try, partner" 
+            redirect_to session.delete(:return_to), alert: "Nice try, partner!" 
         else
             if params[:user_id]
                 @tracks = Track.where(:user_id => params[:user_id])
