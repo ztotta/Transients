@@ -17,6 +17,8 @@
 //= require bootstrap
 //= require_tree .
 
+
+
 if ($('#track-list .song-row').length >= 20 ) {
     $('body').append("<p id='load-more'><span>LOAD MORE</span></p>");
 }
@@ -42,29 +44,11 @@ $('.song-row').click(function(){
 //            barWidth: 3;
     });
     wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
-    wavecounter++
+    waveCounter++
+    
+    console.log('here') 
+    $.post("/usertracks", {
+        track_id: $(this).data("id"),
+        authenticity_token: authToken()
+    })
 })
-
-
-
-
-
-//var wavesurfer = WaveSurfer.create({
-//    container: ('#waveform' + wavecounter),
-//    waveColor: 'violet',
-//    progressColor: 'purple',
-//    height: 37
-//});
-// increment 
-
-//wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
-
-
-
-//  on click: 
-//      replace '.song-row' HTML with waveform html (store in var, include td-colspan=7)
-//          play/pause button only
-//      wavesurfer+i.load('#url#')
-//      wavesurfer+i.play
-
-

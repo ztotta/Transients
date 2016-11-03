@@ -65,6 +65,12 @@
       <p>TRANSIENTS</p>
     </div>
     
+    <script>
+        function authToken() {
+            return '<%= form_authenticity_token if protect_against_forgery? -%>';
+        }
+    </script>
+
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

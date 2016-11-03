@@ -32,6 +32,7 @@ body {
     background: linear-gradient(cadetblue, #8ceaec); /* Standard syntax */
     background-repeat: no-repeat;
     background-attachment: fixed;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .btn-circle {
@@ -70,6 +71,11 @@ body {
 .navbar {
     margin: 0 0 0.5% 0;
     font-family: 'Source Sans Pro', sans-serif;
+}
+
+#new-user {
+    width: 25%;
+    margin: 0 auto;
 }
 
 .played-track {
@@ -170,6 +176,9 @@ a:visited {
     #users-index {
         width: 80%;
     }
+    #new-user {
+        width: 40%;
+    }
 }
 
 @media only screen and (max-width: 900px) {
@@ -178,6 +187,9 @@ a:visited {
     }
     #users-index {
         width: 87%;
+    }
+    #new-user {
+        width: 55%;
     }
 }
 
@@ -188,6 +200,9 @@ a:visited {
     #users-index {
         width: 94%;
     }
+    #new-user {
+        width: 70%;
+    }
 }
 
 @media only screen and (max-width: 500px) {
@@ -196,6 +211,9 @@ a:visited {
     }
     #users-index {
         width: 100%;
+    }
+    #new-user {
+        width: 95%;
     }
 }
 

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
   
+  get 'usertracks/create'
+
+  get 'usertracks/delete'
+
     root 'welcome#index'
     
     resources :users, only: [:index, :new, :create, :show, :edit, :update] do
@@ -13,10 +17,13 @@ Rails.application.routes.draw do
     get '/login', to: 'sessions#new'
     get '/logout', to: 'welcome#index'
     
+    resources :usertracks, only: [:create, :destroy]
+    
     
     
     
 #    Rails.application.routes.draw do
+
 #      root "mumbles#index"
 #
 #      resources :users, only: [:new, :create, :show, :edit, :update] do

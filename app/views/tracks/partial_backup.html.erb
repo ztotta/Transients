@@ -1,3 +1,7 @@
+
+<!-- conditional to check for if track has been played -->
+    <% if current_user.id != UserTrack.where({track_id: track.id}) %> 
+
 <!--clickable track-titlerows from making wavesurfer transition-->
     <!--  @users  -->
     <td class="table-title"><%= link_to track.title, track_path(track.id, category: params[:category], :user_id => track.user_id) %></td> <!-- track.track_url, :target => "_blank" -->

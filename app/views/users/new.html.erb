@@ -1,43 +1,42 @@
-<h1>Sign Up</h1>
-<%= form_for @user, html: {multipart: true} do |f| %>
-  <% if @user.errors.any? %>
-    <div class="error_messages">
-      <h2>Form is invalid</h2>
-      <ul>
-        <% for message in @user.errors.full_messages %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
+<div id="new-user" class="container">
+   <div class="row">
+    <h1 style="text-align: center;">Sign Up</h1>
+    <%= bootstrap_form_for @user, html: {multipart: true} do |f| %>
+      <% if @user.errors.any? %>
+        <div class="error_messages">
+          <h2>Form is invalid</h2>
+          <ul>
+            <% for message in @user.errors.full_messages.reverse %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.text_field :username, icon: "user" %>
+      </div>
+      <div class="field">
+      <div class="field">
+        <%= f.text_field :email, icon: "envelope" %>
+      </div>
+       <div class="field">
+        <%= f.text_area :about, icon: "pencil" %>
+      </div>
+       <div class="field">
+        <%= f.text_field :website, icon: "globe" %>
+      </div>
+       <div class="field">
+        <%= f.file_field :image %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password, icon: "lock" %>
+      </div>
+      <div class="field">
+        <%= f.password_field :password_confirmation, icon: "lock" %>
+      </div>
+      <div style="float: right" class="actions"><%= f.submit %></div>
+    <% end %>
+
     </div>
-  <% end %>
-  <div class="field">
-    <%= f.label :username %>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.text_field :email %>
-  </div>
-   <div class="field">
-    <%= f.label :about %>
-    <%= f.text_field :about %>
-  </div>
-   <div class="field">
-    <%= f.label :website %>
-    <%= f.text_field :website %>
-  </div>
-   <div class="field">
-    <%= f.label :image %>
-    <%= f.file_field :image %>
-  </div>
-  <div class="field">
-    <%= f.label :password %>
-    <%= f.password_field :password %>
-  </div>
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation %>
-  </div>
-  <div class="actions"><%= f.submit %></div>
-<% end %>
+</div>
+</div>
