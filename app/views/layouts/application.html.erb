@@ -5,7 +5,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <link href="https://fonts.googleapis.com/css?family=Lobster+Two|Source+Sans+Pro" rel="stylesheet">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
   <%= csrf_meta_tags %>
 
 </head>
@@ -62,7 +61,8 @@
 <%= yield %>
    
     <div class="footer">
-      <p>TRANSIENTS</p>
+<!--      <p id="audio-player"><audio autoplay="autoplay" controls="controls" src="https://transientsapp-files.s3-us-west-1.amazonaws.com/tracks/audios/000/006/163/original/02_For_My_Friends.mp3?1478202201"></audio></p>-->
+      <p id="audio-player">TRANSIENTS</p>
     </div>
     
     <script>
@@ -71,6 +71,7 @@
         }
     </script>
 
+  <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.0.52/wavesurfer.min.js"></script>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 </body>
 </html>

@@ -4,6 +4,8 @@ class TracksController < ApplicationController
     def index
         session[:return_to] = request.referer
         
+        @track = Track.last
+        
         if params[:user_id]
             @tracks = Track.where(:user_id => params[:user_id])
             @user = User.find(params[:user_id])
@@ -32,7 +34,7 @@ class TracksController < ApplicationController
     def create
         @user = User.find(params[:user_id])
         @track = @user.tracks.create(track_params)
-
+#        binding.pry
         if @track.save
           flash[:notice] = "You have uploaded a new track!"
 
@@ -81,7 +83,7 @@ class TracksController < ApplicationController
     
     private 
         def track_params
-            params.require(:track).permit(:title, :category, :length, :track_url, :plays)
+            params.require(:track).permit(:title, :category, :length, :track_url, :plays, :audio)
         end
     
         def authorize_destroy

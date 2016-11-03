@@ -49,21 +49,17 @@
                         </div>
 
                         <div class="track-new">
-                          <%= bootstrap_form_for [@user, Track.new] do |f| %>
+                          <%= bootstrap_form_for [@user, Track.new], html: {multipart: true} do |f| %>
                             <div class="field form-group">
-                              <%= f.label :title %>
                               <%= f.text_field :title, class: "form-control" %>
                             </div>
                             <div class="field form-group">
-                              <%= f.label :category %>
                               <%= f.select(:category, ['music', 'stories', 'poetry', 'gratitude', 'wishes', 'rants']) %>
                             </div>
                             <div class="field">
-                              <%= f.label :audio %>
-                              <%= f.file_field :track_url %>
+                              <%= f.file_field :audio, label: "Track" %>
                             </div>
                             <div class="field">
-                              <%= f.label :length %>
                               <%= f.text_field :length %>
                             </div>
                               <%= hidden_field_tag "redirect", user_path(@user) %>
