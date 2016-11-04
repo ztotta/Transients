@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :authenticate, only: [:edit, :update]  #removed :show to allow for other profile viewing through show route
-  before_action :authorize, only: [:edit, :update]     # ditto --^
+  before_action :authorize, only: [:edit, :update, :show]     # ditto --^
     
   def new
     @user = User.new
@@ -53,6 +53,9 @@ class UsersController < ApplicationController
     
     def authorize
       @user = User.find(params[:id])
-      redirect_to root_path if @user != current_user
+#      redirect_to new_user_path if @user != current_user
+      if !logged_in? # changed from code above ---^
+        redirect_to new_user_path
+      end
     end
 end

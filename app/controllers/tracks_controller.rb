@@ -1,5 +1,6 @@
 class TracksController < ApplicationController
     before_action :authorize_destroy, only: [:destroy]
+    before_action :authorize, only: [:index]
     
     def index
         session[:return_to] = request.referer
@@ -84,6 +85,12 @@ class TracksController < ApplicationController
     private 
         def track_params
             params.require(:track).permit(:title, :category, :length, :track_url, :plays, :audio, :length_select)
+        end
+    
+        def authorize
+            if !logged_in?
+                redirect_to new_user_path
+            end
         end
     
         def authorize_destroy
