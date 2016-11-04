@@ -5,7 +5,9 @@ class Track < ActiveRecord::Base
     has_many :played_users, :through => :user_tracks,
                                     source: :user
     
-    has_attached_file :audio
+    has_attached_file :audio,
+                    :default_url => "https://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3"
+    
 #    validates_attachment_content_type :audio, content_type: /\Aaudio\/.*\Z/
     
     validates_attachment_content_type :audio, :content_type => ['audio/mp3']

@@ -18,8 +18,20 @@
 @import "bootstrap-sprockets";
 @import "bootstrap"; 
 
-audio {
+//audio {
+//    width: 70%;
+////    background-color: #777;
+////    border: 3px solid #777;
+//}
+
+audio
+    {
     width: 70%;
+    cursor: pointer;
+}
+
+audio:hover {
+    cursor: pointer;
 }
 
 html, body {

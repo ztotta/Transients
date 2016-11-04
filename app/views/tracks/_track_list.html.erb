@@ -9,7 +9,6 @@
                 <table class="table table-hover table-responsive tracks-table">
                     <thead>
                         <tr>
-                            <th></th>
                             <th>TITLE</th>
                             <% if @category %>
                                 <th>USER</th>
@@ -25,7 +24,7 @@
                     <tbody>
                         <% if !@user %>
                             <% @tracks.reverse.first(20).each do |track| %>
-                                <% # if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>   
+                                <% if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>   
                                     <% user_name = User.find(track.user_id).username %>
                                     <tr class="song-row" data-id="<%= track.id %>">
                                        
@@ -37,11 +36,11 @@
                                         <td><%= track.formatted_time %></td>
                                         <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
                                     </tr>
-                                <% # end %>
+                                <% end %>
                             <% end %>
                         <% else %>
                             <% @user.tracks.reverse.first(20).each do |track| %>
-                                <% # if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>
+                                <% if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>
                                     <tr class="song-row" data-id="<%= track.id %>">
  
 <!--                                        <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>-->
@@ -51,7 +50,7 @@
                                         <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
                                         <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
                                     </tr> 
-                                <% # end %>
+                                <% end %>
                             <% end %>
                         <% end %>
                     </tbody>

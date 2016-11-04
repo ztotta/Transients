@@ -18,7 +18,7 @@
 //= require_tree .
 
 
-
+//// LOAD MORE BUTTON, incomplete
 if ($('#track-list .song-row').length >= 15 ) {
     $('body').append("<p id='load-more'><span>LOAD MORE</span></p>");
 }
@@ -28,8 +28,8 @@ if ($('#users-index .user-image').length >= 15 ) {
 
 // wavesurfer dance
 
-var waveCounter = 0;
-var wavez = "wavesurfer"+waveCounter
+//var waveCounter = 0;
+//var wavez = "wavesurfer"+waveCounter
 
 $('.song-row').click(function(){
     $(this).fadeOut(100);
@@ -56,20 +56,17 @@ $('.song-row').click(function(){
         authenticity_token: authToken()
     }).then(function(data) {
         console.log(data);
-         $('#audio-player').html(`<audio autoplay="autoplay" controls="controls" src="${data.audio}"></audio>`)
+          $('#audio-player').html(`<audio id="player" autoplay="autoplay" controls="controls" src="${data.audio}"></audio>`)
+//            wavesurfer.load("${data.audio}");
+//        setTimeout(function() {
+//            wavesurfer.play()
+//        }, 500);
     }, function(err) {
         console.warn(err);
     })
     
-//    wavesurfer.load('http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3');
-//    wavesurfer.play();
-//    wavesurfer.load(track_url.url);
 //    waveCounter++;
     
-//    $('#audio-player').html('HEYYYY');
-//    $('#audio-player').html('<audio autoplay="autoplay" controls="controls" src="http://ia902606.us.archive.org/35/items/shortpoetry_047_librivox/song_cjrg_teasdale_64kb.mp3"></audio>')
-//    $('.body').html(<audio autoplay="autoplay" controls="controls" src="https://transientsapp-files.s3-us-west-1.amazonaws.com/tracks/audios/000/006/163/original/02_For_My_Friends.mp3?1478202201"></audio>)
-    // $.get("/track", {
-    // 
-    // })
 })
+
+//var $playPause = $('#player');

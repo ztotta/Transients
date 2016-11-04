@@ -3,7 +3,7 @@ require 'faker'
 User.destroy_all
 Track.destroy_all
 
-100.times do ||
+30.times do ||
    
 x = ::Faker::Internet.user_name
 y = ::Faker::Internet.email
@@ -11,13 +11,14 @@ z = ::Faker::Internet.password(8)
 a = ::Faker::Internet.url #website
 b = ::Faker::Lorem.sentence #about
 c = ::Faker::Avatar.image #img_url
+d = ::Faker::Avatar.image #image
     
-User.create({username: x, email: y, password: z, password_confirmation: z, website: a, about: b, img_url: c})    
+User.create({username: x, email: y, password: z, password_confirmation: z, website: a, about: b, img_url: c, image: d})    
     
 end
 
 10.times do ||
-    100.times do |i|
+    30.times do |i|
 
     id = User.first.id + i
     x = Faker::Hipster.words(2) #title
