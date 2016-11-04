@@ -1,4 +1,7 @@
 
+<!-- strftime conversion from loop -->
+    <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+
 <!-- conditional to check for if track has been played -->
     <% if current_user.id != UserTrack.where({track_id: track.id}) %> 
 

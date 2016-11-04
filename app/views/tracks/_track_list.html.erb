@@ -34,7 +34,12 @@
                                         <td><%= link_to user_name, user_path(track.user_id) unless !@category %></td> <!-- did inline conditional work? -->
                                         <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                         <td><%= track.formatted_time %></td>
-                                        <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                                        <% if track.length_select %>
+                                            <td><%= track.length_select %></td>
+                                        <% else %>
+                                            <td>&lt; 1 min</td>    
+                                        <% end %>
+                                        <!-- removed strftime function from both loops (in partial_backup) -->
                                     </tr>
                                 <% end %>
                             <% end %>
@@ -47,7 +52,11 @@
                                         <td class="table-title"><%= track.title %></td>
                                         <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                         <td><%= track.formatted_time %></td>
-                                        <td><%= Time.at(track.length).utc.strftime("%M:%S") %></td>
+                                        <% if track.length_select %>
+                                            <td><%= track.length_select %></td>
+                                        <% else %>
+                                            <td>&lt; 1 min</td>    
+                                        <% end %>    
                                         <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
                                     </tr> 
                                 <% end %>

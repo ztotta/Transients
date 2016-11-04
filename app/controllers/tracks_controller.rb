@@ -83,7 +83,7 @@ class TracksController < ApplicationController
     
     private 
         def track_params
-            params.require(:track).permit(:title, :category, :length, :track_url, :plays, :audio)
+            params.require(:track).permit(:title, :category, :length, :track_url, :plays, :audio, :length_select)
         end
     
         def authorize_destroy

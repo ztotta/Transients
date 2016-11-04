@@ -87,6 +87,7 @@ body {
 .navbar {
     margin: 0 0 0.5% 0;
     font-family: 'Source Sans Pro', sans-serif;
+    font-size: 1.25em;
 }
 
 #new-user {
@@ -133,9 +134,7 @@ body {
     border: 3px solid grey;
     text-align: left;
     width: 100%;
-}
-
-#profile-tracks {
+    font-size: 1.25em;
 }
 
 .footer {
@@ -266,4 +265,8 @@ a:visited {
 
 #waveformTemplate {
     display: none;
+}
+
+#audio-player {
+    border: 3px solid #777;
 }

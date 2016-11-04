@@ -15,7 +15,7 @@ class Track < ActiveRecord::Base
 #    has_attached_file :audio  ,
 #                      :url => "/assets/:class/:id/:attachment/:style.:extension",
 #                      :path => ":rails_root/public/assets/:class/:id/:attachment/:style.:extension"
-    
+
     
     
     def formatted_time

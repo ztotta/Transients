@@ -11,9 +11,8 @@ z = ::Faker::Internet.password(8)
 a = ::Faker::Internet.url #website
 b = ::Faker::Lorem.sentence #about
 c = ::Faker::Avatar.image #img_url
-d = ::Faker::Avatar.image #image
     
-User.create({username: x, email: y, password: z, password_confirmation: z, website: a, about: b, img_url: c, image: d})    
+User.create({username: x, email: y, password: z, password_confirmation: z, website: a, about: b, img_url: c})    
     
 end
 
@@ -26,7 +25,7 @@ end
     z = ["music", "stories", "poetry", "gratitude", "wishes", "rants"].sample #category
     a = ::Faker::Internet.url #website
     b = ::Faker::Lorem.paragraph #about
-    c = ::Faker::Number.between(0, 300) #length
+    c = ["< 30 sec", "< 1 min", "< 3 min", "< 10 min", "> 10 min"].sample #length
 
     Track.create({user_id: id, plays: y, title: x, category: z, track_url: a, length: c})    
 

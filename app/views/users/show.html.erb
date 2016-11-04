@@ -59,8 +59,8 @@
                             <div class="field">
                               <%= f.file_field :audio, label: "Track" %>
                             </div>
-                            <div class="field">
-                              <%= f.text_field :length %>
+                             <div class="field form-group">
+                              <%= f.select(:length_select, ['< 30 sec', '< 1 min','< 3 min', '< 10 min', '> 10 min']) %>
                             </div>
                               <%= hidden_field_tag "redirect", user_path(@user) %>
                         </div>
