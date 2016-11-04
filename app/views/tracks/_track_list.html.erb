@@ -1,4 +1,3 @@
-
 <!--  conditionals maze?  -->
     <% if flash[:notice] %>
         <h4 class="warning-notice"><%= flash[:notice] %></h4>
@@ -48,7 +47,7 @@
                                 <% if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>
                                     <tr class="song-row" data-id="<%= track.id %>">
  
-<!--                                        <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>-->
+                                    <!-- <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>-->
                                         <td class="table-title"><%= track.title %></td>
                                         <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                         <td><%= track.formatted_time %></td>
