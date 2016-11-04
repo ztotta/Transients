@@ -34,11 +34,14 @@ Below is a user profile page. I wanted to keep the site inviting but simple, as 
 
 ###Technologies used:
 ___
-This is a full-stack Ruby on Rails application that utilizes HTML, CSS, Bootstrap, Paperclip, bCrypt, JavaScript, jQuery, PostgresQL, and AWS S3 file hosting. It's deployed via Heroku. 
+This is a full-stack Ruby on Rails application that utilizes HTML, CSS, Bootstrap, Paperclip, bCrypt, JavaScript, jQuery, PostgresQL, [Agile Development](https://trello.com/b/Y7iZEk7U/transients), and AWS S3 file hosting. It's deployed via Heroku. 
 
-###Design
+###Code
 ___
 
+The most challenging feature...
+
+I'm proud of...
 
 ###Yet to be resolved:
 ___
