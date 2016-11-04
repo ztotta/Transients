@@ -27,7 +27,7 @@ end
     b = ::Faker::Lorem.paragraph #about
     c = ["< 30 sec", "< 1 min", "< 3 min", "< 10 min", "> 10 min"].sample #length
 
-    Track.create({user_id: id, plays: y, title: x, category: z, track_url: a, length: c})    
+    Track.create({user_id: id, plays: y, title: x, category: z, track_url: a, length: c, length_select: "< 30 sec"})    
 
     end
 end
