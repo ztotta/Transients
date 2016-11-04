@@ -56,7 +56,8 @@ $('.song-row').click(function(){
         authenticity_token: authToken()
     }).then(function(data) {
         console.log(data);
-          $('#audio-player').html('<audio id="player" autoplay="autoplay" controls="controls" src="'+data.audio+'"></audio>')
+          $('#audio-player').html('');
+          $('#audio-player').html('<audio id="player" autoplay="autoplay" controls="controls" src="'+data.audio+'"></audio>');
 //            wavesurfer.load("${data.audio}");
 //        setTimeout(function() {
 //            wavesurfer.play()
