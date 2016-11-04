@@ -5,7 +5,6 @@
             <%= image_tag @user.image.url(:medium), width: "200px", class: "img-circle" %>   
           <div class="caption text-over-image shrink">
             <h3><%= current_user.username %></h3>
-            <h5>72 plays | 88 followers | following 32</h5>
             <h5><%= current_user.about %></h5>
             <h5><%= link_to current_user.website, current_user.website, :target => "_blank" %></h5>
             <a href="#upload" data-toggle="modal">upload track </a>|<a href="#edit" data-toggle="modal"> edit profile</a>
@@ -16,7 +15,6 @@
             <%= image_tag @user.img_url, width: "200px", class: "img-circle" %>      
           <div class="caption text-over-image shrink">
             <h3><%= @user.username %></h3>
-            <h5>72 plays | 88 followers | following 32</h5>
             <h5><%= @user.about %></h5>
             <h5><%= link_to @user.website, @user.website, :target => "_blank" %></h5>
           </div>
