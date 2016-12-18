@@ -1,3 +1,5 @@
+# Creating & destroying sessions:
+
 class SessionsController < ApplicationController
 
   def new

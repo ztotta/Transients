@@ -21,16 +21,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                       <!-- If the user is not on a specific user's page: -->
                         <% if !@user %>
                             <% @tracks.reverse.first(20).each do |track| %>
                                 <% if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>   
                                     <% user_name = User.find(track.user_id).username %>
                                     <tr class="song-row" data-id="<%= track.id %>">
-                                       
-                                        <!--    <td><button type="button" class="btn btn-default btn-circle"><i class="glyphicon glyphicon-play"></i></button></td> --->
-<!--                                        <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>-->
                                         <td class="table-title"><%= track.title %></td> 
-                                        <td><%= link_to user_name, user_path(track.user_id) unless !@category %></td> <!-- did inline conditional work? -->
+                                        <td><%= link_to user_name, user_path(track.user_id) unless !@category %></td> 
                                         <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                         <td><%= track.formatted_time %></td>
                                         <% if track.length_select %>
@@ -38,16 +36,14 @@
                                         <% else %>
                                             <td>&lt; 1 min</td>    
                                         <% end %>
-                                        <!-- removed strftime function from both loops (in partial_backup) -->
                                     </tr>
                                 <% end %>
                             <% end %>
                         <% else %>
-                            <% @user.tracks.reverse.first(20).each do |track| %>
-                                <% if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %>
-                                    <tr class="song-row" data-id="<%= track.id %>">
- 
-                                    <!-- <td class="play-button"><a href=""><span class="glyphicon glyphicon-play" aria-hidden="true"></span></a></td>-->
+                           <!-- Show the first 20 of the current user's audio tracks: -->
+                            <% @user.tracks.reverse.first(20).each do |track| %> <!-- Only show if the user has not yet --> 
+                                <% if !UserTrack.where({track_id: track.id, user_id: current_user.id})[0] %><!-- listened -->
+                                    <tr class="song-row" data-id="<%= track.id %>"> <!-- Filling in the tracks table -->
                                         <td class="table-title"><%= track.title %></td>
                                         <td><%= link_to track.category, tracks_path(:category => track.category) %></td>
                                         <td><%= track.formatted_time %></td>
@@ -55,7 +51,7 @@
                                             <td><%= track.length_select %></td>
                                         <% else %>
                                             <td>&lt; 1 min</td>    
-                                        <% end %>    
+                                        <% end %>    							<!-- deletion privileges for the current user -->
                                         <td><%= link_to("X", track_path(track), method: :delete) if track.user == current_user %></td>
                                     </tr> 
                                 <% end %>

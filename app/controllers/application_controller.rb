@@ -1,6 +1,7 @@
+# Defining current_user, checking for logged_in status:
+
 class ApplicationController < ActionController::Base
-  # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
+
   protect_from_forgery with: :exception
     
   def no_repeats    

@@ -1,3 +1,5 @@
+# Controller actions for users:
+
 class UsersController < ApplicationController
   before_action :authenticate, only: [:edit, :update]  #removed :show to allow for other profile viewing through show route
   before_action :authorize, only: [:edit, :update, :show]     # ditto --^

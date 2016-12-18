@@ -1,3 +1,5 @@
+# Controller actions for Tracks:
+
 class TracksController < ApplicationController
     before_action :authorize_destroy, only: [:destroy]
     before_action :authorize, only: [:index]
@@ -7,13 +9,20 @@ class TracksController < ApplicationController
         
         @track = Track.last
         
+        # If we're indexing a specific user, show only that user's tracks:
         if params[:user_id]
             @tracks = Track.where(:user_id => params[:user_id])
             @user = User.find(params[:user_id])
+        
+        # If we're indexing a specific category, show only that category's tracks:
         elsif params[:category]
+            
+            # If the user clicked 'random', display only one random track from the db:
             if params[:category] == "random"
                 @tracks = Track.limit(1).order("RANDOM()")
                 @category = ""
+            
+            # Otherwise, show the entire category
             else
                 @tracks = Track.where(:category => params[:category])
                 @category = Track.where(:category => params[:category])
@@ -21,21 +30,11 @@ class TracksController < ApplicationController
         else
             @tracks = Track.all
         end
-            
-#        @tracks = Track.all
-#        if params[:user_id]
-#          @user    = User.find(params[:user_id])
-#          redirect_to user_path(@user) if @user == current_user #redirect to user's profile
-#          @tracks = Track.search(params[:search]).where(username: @user)
-#        else
-#          @tracks = Track.search params[:search]
-#        end
     end
     
     def create
         @user = User.find(params[:user_id])
         @track = @user.tracks.create(track_params)
-#        binding.pry
         if @track.save
           flash[:notice] = "You have uploaded a new track!"
 
@@ -55,18 +54,22 @@ class TracksController < ApplicationController
     end
     
     def show
-        # need to create @instances like in index so that the show page
-        # can replicate the other pages in the site 
-        # (rubthelamp, categories, other's profile, current_user's profile)
         @track = Track.find(params[:id])
         
+        # If a user tries to cheat the URL to get back to a previous track:
         if current_user.played_tracks.include? @track
             redirect_to session.delete(:return_to), alert: "Nice try, partner!" 
+        
+        # If we're indexing a specific user's tracks:
         else
             if params[:user_id]
                 @tracks = Track.where(:user_id => params[:user_id])
                 @user = User.find(params[:user_id])
+            
+            #If we're indexing a specific category:
             elsif params[:category]
+                
+                # Unless random is chosen, in which case we'll display only one random track:
                 if params[:category] == "random"
                     @tracks = Track.limit(1).order("RANDOM()")
                     @category = ""

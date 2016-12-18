@@ -1,28 +1,22 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require_tree .
- *= require_self
- *= require rails_bootstrap_forms
- */
-
 @import "bootstrap-sprockets";
 @import "bootstrap"; 
 
-//audio {
-//    width: 70%;
-////    background-color: #777;
-////    border: 3px solid #777;
-//}
+a {
+    color: black;
+}
+
+a:link { 
+    color: #777;
+}
+
+a:visited { 
+    color: #777;
+    text-decoration: none;
+}
+
+.actions {
+    display: inline;
+}
 
 audio
     {
@@ -32,6 +26,10 @@ audio
 
 audio:hover {
     cursor: pointer;
+}
+
+#audio-player {
+    border: 3px solid #777;
 }
 
 html, body {
@@ -61,6 +59,17 @@ body {
   border-radius: 15px;
 }
 
+.footer {
+    background-color: #777;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 37px;
+    text-align: center;
+    color:  #f8f8f8; 
+    font-size: 1.25em;
+}
+
 #load-more {
     background: #f8f8f8;
     border: 3px solid #777;
@@ -84,6 +93,11 @@ body {
 	padding: 0 15px;
 }
 
+.modal-footer, .modal-header {
+    background-color: #f8f8f8;
+    color: #777;
+}
+
 .navbar {
     margin: 0 0 0.5% 0;
     font-family: 'Source Sans Pro', sans-serif;
@@ -104,10 +118,17 @@ body {
     background-color: #777;
 }
 
-#upload-track {
-    width: 20%;
-    margin: 1em;
-    text-align: center;
+.row {
+    margin-bottom: 1em;
+}
+
+.table-hover {
+    
+}
+
+.table-title {
+    border-collapse: collapse;
+    overflow-x: hidden;
 }
 
 .track-new {
@@ -116,15 +137,8 @@ body {
     text-align: left;
 }
 
- .user-image {
-    display: inline-block;
-    position: relative;
-}
-
-.tracks-table-container {
-    width: 70%;
-    border-radius: 10%;
-    margin: 0 auto;
+.tracks-banner {
+    margin: 1em auto 0 auto;
     text-align: center;
 }
 
@@ -137,52 +151,39 @@ body {
     font-size: 1.25em;
 }
 
-.footer {
-    background-color: #777;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    height: 37px;
-    text-align: center;
-    color:  #f8f8f8; 
-    font-size: 1.25em;
-}
-
-
-.tracks-banner {
-    margin: 1em auto 0 auto;
+.tracks-table-container {
+    width: 70%;
+    border-radius: 10%;
+    margin: 0 auto;
     text-align: center;
 }
 
-.modal-footer, .modal-header {
-    background-color: #f8f8f8;
-    color: #777;
+#upload-track {
+    width: 20%;
+    margin: 1em;
+    text-align: center;
 }
 
-.actions {
-    display: inline;
-}
-
-.row {
-    margin-bottom: 1em;
-}
-
-a {
-    color: black;
-}
-
-a:link { 
-    color: #777;
-}
-
-a:visited { 
-    color: #777;
-    text-decoration: none;
+.user-image {
+    display: inline-block;
+    position: relative;
 }
 
 #users-index {
     width: 70%;
     margin: 0 auto 1em auto;
+}
+
+.users-index {
+    text-align: center;
+    display: block;
+}
+
+#waveform {
+}
+
+#waveformTemplate {
+    display: none;
 }
 
 @media only screen and (max-width: 1200px) {
@@ -243,31 +244,4 @@ a:visited {
     audio {
         width: 100%;
     }
-}
-
-.table-hover {
-    
-}
-
-.table-title {
-    border-collapse: collapse;
-    overflow-x: hidden;
-}
-
-.users-index {
-    text-align: center;
-    display: block;
-}
-
-
-
-#waveform {
-}
-
-#waveformTemplate {
-    display: none;
-}
-
-#audio-player {
-    border: 3px solid #777;
 }
