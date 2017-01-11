@@ -42,9 +42,7 @@ This is a full-stack Ruby on Rails application that utilizes HTML, JavaScript, j
 --
 
 ###Code
-The most challenging feature to code was the removal of each user's access to the tracks that they had already listened to without limiting other users' access. This was achieved by creating a join table between the users and the tracks they listened to. After listening, the track was removed from the page via jQuery and the track id was pushed to this table in the database via Ajax. When a new page would load, any tracks with ids matching those on the join table would be skipped over and thus not be printed onto the screen for the user to access. 
-
-The biggest challenge here was concealing the previously heard tracks from the current user. I achieved this by creating a join-table between the tracks and the users and checking for matches before displaying tracks.
+The most challenging feature to code was the removal of each user's access to the tracks that they had already listened to without limiting other users' access. This was achieved by creating a join table between the users and the tracks they listened to. After listening, the track was removed from the page via jQuery and the track id was pushed to this table in the database through an AJAX request. When a new page would load, any tracks with ids matching those on the join table would be skipped over and thus not be printed onto the screen for the user to access. 
 
 ![tracks-snippet](https://github.com/ztotta/Transients/blob/master/public/tracks.png?raw=true)
 
@@ -61,4 +59,4 @@ Finally, the logo is sloppy and I didn't get around to designing it fully in all
 
 --
 ###Conclusion:
-Overall, I'm quite happy with the site and I'm proud of how much I had to devise and learn in order to even get it to where it is at this moment. Through all of the slogging, I feel much more comfortable with Ruby on Rails and the distinction/connection between the back and front ends. Working independetly on a full-stack app feels like being both the chef and the waiter, jumping between building the foundation/connecting all the wires and presenting the result to the human eye. It's been intimidating and at times overwhelming, but confronting and overcoming such challenges in the name of creation is how I learn best.
+Overall, I'm quite happy with the site and I'm proud of how much I had to devise and learn in order to even get it to where it is at this moment. Through all of the slogging, I feel much more comfortable with Ruby on Rails and the distinction/connection between the back and front ends. Working independently on a full-stack app feels like being both the chef and the waiter, jumping between building the foundation/connecting all the wires and presenting the result to the human eye. It's been intimidating and at times overwhelming, but confronting and overcoming such challenges in the name of creation is how I learn best.
